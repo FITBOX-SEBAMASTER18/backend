@@ -1,0 +1,12 @@
+{
+  "db": "mongodb://fitbox:fitbox1923@ds263740.mlab.com:63740/fitbox",
+  "port": "6678",
+  "JWTSecret": "a.r.o.g'taki_zaman_makinesi",
+  "JWTExpiration": "1d",
+  "saltRounds": "12",
+  "adminKey":   "123456",
+  "globalPaths": [
+    "/user/login",
+    "/user/register"
+  ]
+}

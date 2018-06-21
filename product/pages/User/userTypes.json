@@ -1,0 +1,6 @@
+{
+    "regular":      0,
+    "partner":      1,
+    "employee":    3,
+    "admin":        4
+}

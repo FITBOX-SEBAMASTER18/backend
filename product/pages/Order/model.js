@@ -8,8 +8,8 @@ const isEmpty = utility.isEmpty;
 
 const OrderSchema = new Schema({
   price:            {type: Number},
-  date:             {type: Date},
-  meals:            [{type: mongoose.SchemaTypes.ObjectId, ref: 'Meal'}],
+  date:             {type: Date, default: Date.now},
+  meals:            [{type: Object}],
   user:             {type: mongoose.SchemaTypes.ObjectId, ref: 'User'},
   properties:       {type: Properties}
 });

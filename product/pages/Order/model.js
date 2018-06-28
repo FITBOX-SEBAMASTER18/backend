@@ -37,6 +37,7 @@ OrderSchema.methods.canAccess = function(user, readOnly) {
       date:         body.date   || Date().getDate() + 7,
       meals:        body.meals || [],
       state:        body.state || [],
+      user:         body.user || "",
       properties:   properties
     };
 
@@ -51,7 +52,8 @@ OrderSchema.methods.canAccess = function(user, readOnly) {
 };
 
 const repOK = function(object) {
-  return PropertiesModel.repOK(object.properties)
+  return !(isEmpty(object.price) || isEmpty(object.date) || isEmpty(object.meals) || isEmpty(object.user)  
+  || !PropertiesModel.repOK(object.properties))
 };
 
 module.exports = mongoose.model('Order', OrderSchema);

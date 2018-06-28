@@ -13,7 +13,7 @@ const MealSchema = new Schema({
   calories:       {type: Number},
   fat:            {type: Number},
   protein:        {type: Number},
-  carbonhydrates: {type: Number},
+  carbohydrates:  {type: Number},
   price:          {type: Number},
   properties:     {type: Properties}
 });
@@ -35,15 +35,15 @@ MealSchema.statics.parseJSON = function(body, user) {
     if(body.writeVisibility) properties.writeVisibility = body.properties.writeVisibility;
 
     let object = {
-      name:   body.name   || "",
-      amount:  body.amount   || 0,
-      ingredients: body.ingredients   || [],
-      calories:     body.calories   || 0,
-      fat:     body.fat   || 0,
-      protein:     body.protein   || 0,
-      carbonhydrates:     body.carbonhydrates   || 0,
-      price:    body.price   || 0,
-      properties: properties
+      name:           body.name   || "",
+      amount:         body.amount   || 0,
+      ingredients:    body.ingredients   || [],
+      calories:       body.calories   || 0,
+      fat:            body.fat   || 0,
+      protein:        body.protein   || 0,
+      carbohydrates:  body.carbohydrates   || 0,
+      price:          body.price   || 0,
+      properties:     properties
     };
 
     if(body.properties) object.properties = properties;
@@ -57,7 +57,8 @@ MealSchema.statics.parseJSON = function(body, user) {
 };
 
 const repOK = function(object) {
-  return !(isEmpty(object.name) || !PropertiesModel.repOK(object.properties))
+  return !(isEmpty(object.name) || isEmpty(object.amount) || isEmpty(object.calories) || isEmpty(object.fat) ||
+  isEmpty(object.protein) || isEmpty(object.carbohydrates) || isEmpty(object.price) ||  !PropertiesModel.repOK(object.properties))
 };
 
 module.exports = mongoose.model('Meal', MealSchema);

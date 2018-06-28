@@ -6,19 +6,16 @@ const Auth = require('./../User/Auth.js');
 const utility = require('./../../utility/utility.js');
 const isEmpty = utility.isEmpty;
 
-const MealSchema = new Schema({
-  name:           {type: String, required: true},
-  amount:         {type: Number},
-  ingredients:    {type: [String]},
-  calories:       {type: Number},
-  fat:            {type: Number},
-  protein:        {type: Number},
-  carbonhydrates: {type: Number},
-  price:          {type: Number},
-  properties:     {type: Properties}
+const MenuSchema = new Schema({
+  startDate:        {type: Date},
+  endDate:          {type: Date},
+  meals:            {type: mongoose.SchemaTypes.ObjectId, ref: 'Meal'},
+  properties:       {type: Properties}
 });
 
-MealSchema.methods.canAccess = function(user, readOnly) {
+MenuSchema.index({startDate: 1, endDate: 1})
+
+MenuSchema.methods.canAccess = function(user, readOnly) {
   if(!this.properties.active())
     return false;
 
@@ -28,22 +25,17 @@ MealSchema.methods.canAccess = function(user, readOnly) {
   return false;
   };
 
-MealSchema.statics.parseJSON = function(body, user) {
+  MenuSchema.statics.parseJSON = function(body, user) {
 
     let properties = {};
     if(body.readVisibility)  properties.readVisibility  = body.properties.readVisibility;
     if(body.writeVisibility) properties.writeVisibility = body.properties.writeVisibility;
 
     let object = {
-      name:   body.name   || "",
-      amount:  body.amount   || 0,
-      ingredients: body.ingredients   || [],
-      calories:     body.calories   || 0,
-      fat:     body.fat   || 0,
-      protein:     body.protein   || 0,
-      carbonhydrates:     body.carbonhydrates   || 0,
-      price:    body.price   || 0,
-      properties: properties
+      startDate:    body.startDate   || Date().getDate(),
+      endDate:      body.endDate   || Date().getDate() + 7,
+      meals:        body.meals || [],
+      properties:   properties
     };
 
     if(body.properties) object.properties = properties;
@@ -57,7 +49,7 @@ MealSchema.statics.parseJSON = function(body, user) {
 };
 
 const repOK = function(object) {
-  return !(isEmpty(object.name) || !PropertiesModel.repOK(object.properties))
+  return PropertiesModel.repOK(object.properties)
 };
 
-module.exports = mongoose.model('Meal', MealSchema);
+module.exports = mongoose.model('Menu', MenuSchema);

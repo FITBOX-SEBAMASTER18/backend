@@ -9,7 +9,7 @@ const param = function(req,res,next){
     req.args = {model: model,
             getSelect:  {}, 
             listSelect: {},
-            logType:    "Menu",
+            logType:    "Order",
     }
     next();
 }
@@ -24,8 +24,7 @@ module.exports = function (app) {
     routes.get('/',         param,  query.list);
     routes.post('/remove',  param,  query.remove);
 
-    routes,get('/today',    controller.getTodaysMenu);
-    
+    routes.post('/user/:userId',  controller.getOrderOfUser);
 
-    app.use('/menu', routes);
+    app.use('/order', routes);
 }

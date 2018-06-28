@@ -9,7 +9,7 @@ const isEmpty = utility.isEmpty;
 const MenuSchema = new Schema({
   startDate:        {type: Date},
   endDate:          {type: Date},
-  meals:            {type: mongoose.SchemaTypes.ObjectId, ref: 'Meal'},
+  meals:            [{type: mongoose.SchemaTypes.ObjectId, ref: 'Meal'}],
   properties:       {type: Properties}
 });
 
@@ -49,7 +49,8 @@ MenuSchema.methods.canAccess = function(user, readOnly) {
 };
 
 const repOK = function(object) {
-  return PropertiesModel.repOK(object.properties)
+  return !(isEmpty(object.startDate) || isEmpty(object.endDate) || isEmpty(object.meals) 
+  || !PropertiesModel.repOK(object.properties))
 };
 
 module.exports = mongoose.model('Menu', MenuSchema);

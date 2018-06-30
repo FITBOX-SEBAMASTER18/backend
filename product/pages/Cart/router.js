@@ -10,6 +10,7 @@ const param = function(req,res,next){
             getSelect: {}, 
             listSelect:{},
             logType: "Cart",
+            populateQuery: "meals"
     }
     next();
 }
@@ -17,15 +18,14 @@ const param = function(req,res,next){
 module.exports = function (app) {
     const routes = express.Router();
 
-
+    routes.get('/userCart',        controller.getCartByUser);
     routes.post('/create',  param,  query.create);
     routes.post('/edit',    param,  query.edit);
-    routes.get('/:id',      param,  query.get);
-    routes.get('/',         param,  query.list);
     routes.post('/remove',  param,  query.remove);
     routes.post('/addToCart',       controller.addToCart);
     routes.post('/removeFromCart',  controller.removeFromCart);
-    routes.post('/userCart',        controller.getCartByUser);
+    routes.get('/:id',      param,  query.get);
+    routes.get('/',         param,  query.list);
 
 
     

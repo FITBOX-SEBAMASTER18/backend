@@ -45,3 +45,10 @@ exports.purchaseCart = function(req, res, next) {
 		}
 	});
 }
+
+exports.getCartByUser = function (req, res, next) {
+    var userId = req.user._id;
+    Cart.find({user: userId}).then(function(err, data) {
+        respondQuery(res,err,data,"Cart","Found")
+    });
+};

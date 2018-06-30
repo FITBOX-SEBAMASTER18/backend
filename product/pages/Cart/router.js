@@ -23,6 +23,10 @@ module.exports = function (app) {
     routes.get('/:id',      param,  query.get);
     routes.get('/',         param,  query.list);
     routes.post('/remove',  param,  query.remove);
+    routes.post('/addToCart',       controller.addToCart);
+    routes.post('/removeFromCart',  controller.removeFromCart);
+    routes.post('/userCart',        controller.getCartByUser);
+
 
     
 

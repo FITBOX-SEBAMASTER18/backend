@@ -15,6 +15,7 @@ const MealSchema = new Schema({
   protein:        {type: Number},
   carbohydrates:  {type: Number},
   price:          {type: Number},
+  image:          {type: String},
   properties:     {type: Properties}
 });
 
@@ -43,6 +44,7 @@ MealSchema.statics.parseJSON = function(body, user) {
       protein:        body.protein   || 0,
       carbohydrates:  body.carbohydrates   || 0,
       price:          body.price   || 0,
+      image:          body.image || null,
       properties:     properties
     };
 

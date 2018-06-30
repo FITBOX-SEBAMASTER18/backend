@@ -10,6 +10,7 @@ const respondBadRequest = utility.respondBadRequest;
 const rounds = parseInt(config.saltRounds);
 
 exports.register = function (req, res, next) {
+     console.log("password "+req.body.password);
     if (isEmpty(req.body.password))
       return respondBadRequest(res);
       
@@ -18,6 +19,7 @@ exports.register = function (req, res, next) {
     req.body.hash = hash;
 
     let data = User.parseJSON(req.body);
+    console.log("data "+data);
     if (!data)
       return respondBadRequest(res);
 

@@ -64,8 +64,9 @@ UserSchema.statics.parseJSON = function(body) {
     };
 
     if(body.properties) object.properties = properties;
-
+    console.log(object);
     object = new this(object);
+    console.log("new obj "+object);
     object.properties.owner = object._id;
     if(repOK(object))
       return object;
@@ -84,6 +85,7 @@ UserSchema.methods.setBy = function(body) {
     };
 
     object = this.set(object);
+
     if(repOK(object))
       return object;
     else

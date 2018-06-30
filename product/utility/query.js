@@ -47,8 +47,6 @@ exports.create = async function (req, res, next) {
   winston.log('debug', logType+ ' Create request received');
 
   let data = await collection.parseJSON(req.body, req.user);
-
-console.log("data: "+data)
   if (!data)
     return respondBadRequest(res);
 

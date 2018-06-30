@@ -39,6 +39,7 @@ MealSchema.statics.parseJSON = function(body, user) {
 
     let object = {
       name:           body.name   || "",
+      description:    body.description || "",
       amount:         body.amount   || 0,
       ingredients:    body.ingredients   || [],
       calories:       body.calories   || 0,
@@ -47,6 +48,7 @@ MealSchema.statics.parseJSON = function(body, user) {
       carbohydrates:  body.carbohydrates   || 0,
       price:          body.price   || 0,
       image:          body.image || null,
+      filters:        body.filters || null,
       properties:     properties
     };
 
@@ -61,8 +63,7 @@ MealSchema.statics.parseJSON = function(body, user) {
 };
 
 const repOK = function(object) {
-  return !(isEmpty(object.name) || isEmpty(object.amount) || isEmpty(object.calories) || isEmpty(object.fat) ||
-  isEmpty(object.protein) || isEmpty(object.carbohydrates) || isEmpty(object.price) ||  !PropertiesModel.repOK(object.properties))
+  return !(isEmpty(object.name) ||  !PropertiesModel.repOK(object.properties))
 };
 
 module.exports = mongoose.model('Meal', MealSchema);

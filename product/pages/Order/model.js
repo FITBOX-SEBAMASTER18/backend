@@ -52,7 +52,7 @@ OrderSchema.methods.canAccess = function(user, readOnly) {
 };
 
 const repOK = function(object) {
-  return !(isEmpty(object.price) || isEmpty(object.date) || isEmpty(object.meals) || isEmpty(object.user)  
+  return !(isEmpty(object.date) || isEmpty(object.meals) || isEmpty(object.user)  
   || !PropertiesModel.repOK(object.properties))
 };
 

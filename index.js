@@ -14,7 +14,7 @@ const auth   = require('./product/pages/User/Auth').auth;
 
 mongoose.Promise = global.Promise;
 //Grid.mongo = mongoose.mongo;
-const conn = mongoose.connect(config.db);
+const conn = mongoose.connect(config.db, { useMongoClient: true });
 global.db = mongoose.connection.db;
 var gfs;
 mongoose.connection.once('open', function () {

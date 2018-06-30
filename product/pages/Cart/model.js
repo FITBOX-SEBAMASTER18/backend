@@ -30,7 +30,7 @@ CartSchema.statics.parseJSON = function(body, user) {
 
     let object = {
       meals:        body.meals || [],
-      user:         body.user || null,
+      user:         user._id || null,
       properties:   properties
     };
 
@@ -45,7 +45,7 @@ CartSchema.statics.parseJSON = function(body, user) {
 };
 
 const repOK = function(object) {
-  return !(isEmpty(object.name) || !PropertiesModel.repOK(object.properties))
+  return !(isEmpty(object.user) || !PropertiesModel.repOK(object.properties))
 };
 
 module.exports = mongoose.model('Cart', CartSchema);

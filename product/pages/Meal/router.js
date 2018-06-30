@@ -11,7 +11,6 @@ const param = function(req,res,next){
             listSelect:{},
             logType: "Meal",
     }
-    console.log(req.body)
     next();
 }
 

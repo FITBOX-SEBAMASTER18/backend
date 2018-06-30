@@ -10,8 +10,6 @@ const auth = jwt({
 });
 
 exports.auth = function (req, res, next) {
-
-    console.log("org URL "+req.originalUrl)
     if(config.globalPaths.indexOf(req.originalUrl) < 0) {
         return auth(req, res, next);
     }

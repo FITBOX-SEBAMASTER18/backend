@@ -72,7 +72,7 @@ exports.edit = function (req, res, next) {
     if(!data.canAccess(req.user, false))
       return winston.log('error', 'Can access failed', {user: req.user})
     data.setBy(req.body)
-
+    
     return data.save()
   }).then(function(data){
     return respondQuery(res, null, data, logType, 'Edited');

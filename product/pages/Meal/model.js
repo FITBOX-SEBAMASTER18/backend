@@ -62,6 +62,29 @@ MealSchema.statics.parseJSON = function(body, user) {
       return null;
 };
 
+MealSchema.methods.setBy = function(body) {
+
+    let object = {
+      name:           body.name   || this.name,
+      description:    body.description || this.description,
+      amount:         body.amount   || this.amount,
+      ingredients:    body.ingredients   || this.ingredients,
+      calories:       body.calories   || this.calories,
+      fat:            body.fat   || this.fat,
+      protein:        body.protein   || this.protein,
+      carbohydrates:  body.carbohydrates   || this.carbohydrates,
+      price:          body.price   || this.price,
+      image:          body.image || this.image,
+      filters:        body.filters || this.filters
+    };
+
+    object = this.set(object);
+    if(repOK(object))
+      return object;
+    else
+      return null;
+};
+
 const repOK = function(object) {
   return !(isEmpty(object.name) ||  !PropertiesModel.repOK(object.properties))
 };

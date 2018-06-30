@@ -30,7 +30,7 @@ AddressSchema.statics.parseJSON = function (body, user) {
     let object = {
         address: body.address || "",
         label: body.label || 0,
-        user: body.user || null
+        user: user._id || null
     };
 
     if (body.properties) object.properties = properties;

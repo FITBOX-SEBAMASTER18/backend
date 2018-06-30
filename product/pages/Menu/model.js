@@ -42,6 +42,7 @@ MenuSchema.methods.canAccess = function(user, readOnly) {
 
     object.properties.owner = user._id;
     object = new this(object);
+    console.log(object);
     if(repOK(object))
       return object;
     else

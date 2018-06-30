@@ -84,6 +84,7 @@ exports.login = function (req, res, next) {
       if (!valid) {
           detail = 'Login Failed';
           status = 401;
+          data = null;
         } else {
           detail = 'Login Successfull';
           status = 200

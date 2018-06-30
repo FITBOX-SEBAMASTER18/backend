@@ -6,8 +6,8 @@ const respondBadRequest = utility.respondBadRequest;
 
 
 exports.getTodaysMenu = function (req, res, next) {
-    today = new Date().getDate();
-    MealMenu.findOne({startDate: {$lt: today}, endDate: {$gt: today}}).populate("meals").then( function (err, data) {
+    let today = Date.now();
+    MealMenu.findOne({startDate: {$lte: today}, endDate: {$gt: today}}).populate("meals").then( function (err, data) {
         return respondQuery(res, err, data, 'Menu', 'Found');
     });
 };

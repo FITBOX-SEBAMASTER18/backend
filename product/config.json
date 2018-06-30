@@ -7,6 +7,7 @@
   "adminKey":   "123456",
   "globalPaths": [
     "/user/login",
-    "/user/register"
+    "/user/register",
+    "/menu/today"
   ]
 }

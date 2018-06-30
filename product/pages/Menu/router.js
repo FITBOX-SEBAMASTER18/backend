@@ -5,7 +5,6 @@ const model = require('./model');
 const winston = require('winston');
 
 const param = function(req,res,next){
-
     req.args = {model: model,
             getSelect:  {}, 
             listSelect: {},
@@ -20,11 +19,11 @@ module.exports = function (app) {
 
     routes.post('/create',  param,  query.create);
     routes.post('/edit',    param,  query.edit);
+    routes.get('/today',   controller.getTodaysMenu);
     routes.get('/:id',      param,  query.get);
     routes.get('/',         param,  query.list);
     routes.post('/remove',  param,  query.remove);
 
-    routes,get('/today',    controller.getTodaysMenu);
     
 
     app.use('/menu', routes);

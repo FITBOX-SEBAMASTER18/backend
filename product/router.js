@@ -11,9 +11,11 @@ const OrderRouter  = require('./pages/Order/router');
 
 
 module.exports = function(app) {
-  
+
   UserRouter(app);
   MealRouter(app);
   CartRouter(app);
   AddressRouter(app);
+  MenuRouter(app);
+  OrderRouter(app)
 }

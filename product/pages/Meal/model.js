@@ -8,6 +8,7 @@ const isEmpty = utility.isEmpty;
 
 const MealSchema = new Schema({
   name:           {type: String, required: true},
+  description:    {type: String},
   amount:         {type: Number},
   ingredients:    {type: [String]},
   calories:       {type: Number},
@@ -16,6 +17,7 @@ const MealSchema = new Schema({
   carbohydrates:  {type: Number},
   price:          {type: Number},
   image:          {type: String},
+  filters:        {type: [String]},
   properties:     {type: Properties}
 });
 

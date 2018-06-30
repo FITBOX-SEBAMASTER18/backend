@@ -23,6 +23,7 @@ module.exports = function (app) {
     routes.get('/:id',      param,  query.get);
     routes.get('/',         param,  query.list);
     routes.post('/remove',  param,  query.remove);
+    routes.get('/user/',            controller.getAddressByUser);
 
     
 

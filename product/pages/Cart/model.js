@@ -48,4 +48,4 @@ const repOK = function(object) {
   return !(isEmpty(object.name) || !PropertiesModel.repOK(object.properties))
 };
 
-module.exports = mongoose.model('Meal', CartSchema);
+module.exports = mongoose.model('Cart', CartSchema);

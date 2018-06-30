@@ -19,6 +19,7 @@ const UserSchema = new Schema({
     isAdmin:      {type: Boolean, select: false, default: false},
     keys:        [{type: String}],
     hash:         {type: String, select: false},
+    picture:      {type: String}, 
     properties:   {type: Properties}
 });
 
@@ -57,7 +58,7 @@ UserSchema.statics.parseJSON = function(body) {
       name:         body.name         || null,
       surname:      body.surname      || null,
       username:     body.username     || null,
-      photo:        body.photo        || null,
+      picture:      body.picture      || null,
       hash:         body.hash         || null,
       properties:   properties
     };

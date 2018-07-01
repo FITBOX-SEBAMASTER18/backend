@@ -12,6 +12,13 @@ const router = require('./product/router');
 const config = require('./product/config.json');
 const auth   = require('./product/pages/User/Auth').auth;
 
+const readline = require('readline');
+
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
 
 mongoose.Promise = global.Promise;
 //Grid.mongo = mongoose.mongo;
@@ -55,17 +62,13 @@ router(app);
 server = app.listen(config.port);
 io = socket(server);
 
-io.on('connection', (socket) => {
-  console.log("Socket id:");
-    console.log(socket.id);
-});
 
 io.on('connection', (socket) => {
-    console.log(socket.id);
 
     socket.on('SEND_MESSAGE', function(data){
-        console.log("Got the message");
-        console.log(data);
-        io.emit('RECEIVE_MESSAGE', data);
+
+      rl.question(data.author+": "+data.message+"\n", (answer) => {
+      socket.emit('RECEIVE_MESSAGE', answer);
+    });
     })
 });

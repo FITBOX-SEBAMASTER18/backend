@@ -10,6 +10,7 @@ const param = function(req,res,next){
             getSelect:  {}, 
             listSelect: {},
             logType:    "Order",
+            populateQuery: "meals"
     }
     next();
 }

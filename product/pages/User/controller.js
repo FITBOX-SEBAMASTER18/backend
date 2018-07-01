@@ -48,9 +48,7 @@ exports.edit = function (req, res, next) {
   }).then(function(saved){
       data = {
         token: saved.generateJwt(),
-        user:  saved._id,
-        admin: saved.isAdmin,
-        type:  saved.userType
+        user:  saved
       };
     return respondQuery(res, null, data, 'User', 'Edited');
   }).catch(function(err){

@@ -6,7 +6,7 @@ const respondBadRequest = utility.respondBadRequest;
 
 
 exports.getOrderOfUser = function (req, res, next) {
-    var userId = req.body.userId;
+    var userId = req.user._id;
     Order.find({user: userId}).populate("user").then(function(data, err) {
         respondQuery(res,err,data,"Orders","Found")
     });

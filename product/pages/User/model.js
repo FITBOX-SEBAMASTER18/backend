@@ -82,6 +82,7 @@ UserSchema.methods.setBy = function(body) {
       name:         body.name         || this.name,
       surname:      body.surname      || this.surname,
       username:     body.username     || this.username,
+      picture:      body.picture      || this.picture
     };
 
     object = this.set(object);

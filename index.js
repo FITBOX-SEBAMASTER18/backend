@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const Grid = require('gridfs-stream');
 const winston = require('winston');
+var socket = require('socket.io');
 
 const router = require('./product/router');
 const config = require('./product/config.json');
@@ -51,4 +52,20 @@ require('./registerWinstonStreams')(winston, [
 ])
 router(app);
 
-app.listen(config.port);
+server = app.listen(config.port);
+io = socket(server);
+
+io.on('connection', (socket) => {
+  console.log("Socket id:");
+    console.log(socket.id);
+});
+
+io.on('connection', (socket) => {
+    console.log(socket.id);
+
+    socket.on('SEND_MESSAGE', function(data){
+        console.log("Got the message");
+        console.log(data);
+        io.emit('RECEIVE_MESSAGE', data);
+    })
+});

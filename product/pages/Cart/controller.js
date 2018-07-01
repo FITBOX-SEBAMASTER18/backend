@@ -46,7 +46,7 @@ exports.purchaseCart = function(req, res, next) {
 	});
 }
 
-exports.getCartByUser = function (req, res, next) {
+exports.myCart = function (req, res, next) {
     var userId = req.user._id;
     Cart.findOne({user: userId}).populate("meals").then(function(data, err) {
         respondQuery(res,err,data,"Cart","Found")

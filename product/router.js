@@ -6,7 +6,7 @@ const CartRouter  = require('./pages/Cart/router');
 const AddressRouter  = require('./pages/Address/router');
 const MenuRouter  = require('./pages/Menu/router');
 const OrderRouter  = require('./pages/Order/router');
-
+const VoteRouter  = require('./pages/Vote/router');
 
 
 
@@ -17,5 +17,6 @@ module.exports = function(app) {
   CartRouter(app);
   AddressRouter(app);
   MenuRouter(app);
-  OrderRouter(app)
+  OrderRouter(app);
+  VoteRouter(app);
 }

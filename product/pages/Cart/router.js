@@ -18,7 +18,7 @@ const param = function(req,res,next){
 module.exports = function (app) {
     const routes = express.Router();
 
-    routes.get('/userCart',        controller.getCartByUser);
+    routes.get('/userCart',        controller.myCart);
     routes.post('/purchase', controller.purchaseCart)
     routes.post('/create',  param,  query.create);
     routes.post('/edit',    param,  query.edit);

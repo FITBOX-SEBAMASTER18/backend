@@ -8,6 +8,7 @@
   "globalPaths": [
     "/user/login",
     "/user/register",
-    "/menu/today"
+    "/menu/today",
+    "/vote/currentResults"
   ]
 }

@@ -20,6 +20,8 @@ module.exports = function (app) {
 
     routes.post('/create',  param,  query.create);
     //routes.post('/edit',    param,  query.edit);
+    routes.get('/myVote', controller.myVote);
+    routes.get('/currentResults', controller.currentResults);
     routes.get('/:id',      param,  query.get);
     routes.get('/',         param,  query.list);
     routes.post('/remove',  param,  query.remove);

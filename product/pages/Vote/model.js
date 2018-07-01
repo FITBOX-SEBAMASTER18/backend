@@ -7,7 +7,7 @@ const isEmpty = utility.isEmpty;
 
 const VoteSchema = new Schema({
     meal:    {type: mongoose.SchemaTypes.ObjectId, ref: 'Meal'},
-    user:    {type: mongoose.SchemaTypes.ObjectId, ref: 'User'}
+    user:    {type: mongoose.SchemaTypes.ObjectId, ref: 'User', unique: true}
 });
 
 VoteSchema.methods.canAccess = function(user, readOnly) {

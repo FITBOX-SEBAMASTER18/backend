@@ -30,7 +30,8 @@ AddressSchema.statics.parseJSON = function (body, user) {
     let object = {
         address: body.address || "",
         label: body.label || 0,
-        user: user._id || null
+        user: user._id || null,
+        properties: properties
     };
 
     if (body.properties) object.properties = properties;
@@ -44,7 +45,7 @@ AddressSchema.statics.parseJSON = function (body, user) {
 };
 
 const repOK = function (object) {
-    return !(isEmpty(object.user) || isEmpty(object.address) || isEmpty(object.label) || !PropertiesModel.repOK(object.properties))
+    return !(isEmpty(object.user) || isEmpty(object.address) || isEmpty(object.label))
 };
 
 module.exports = mongoose.model('Address', AddressSchema);

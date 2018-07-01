@@ -9,7 +9,7 @@ const isEmpty = utility.isEmpty;
 const OrderSchema = new Schema({
   price:            {type: Number},
   date:             {type: Date, default: Date.now},
-  meals:            [{type: Object}],
+  meals:            [{type: String}],
   user:             {type: mongoose.SchemaTypes.ObjectId, ref: 'User'},
   properties:       {type: Properties}
 });
@@ -33,11 +33,11 @@ OrderSchema.methods.canAccess = function(user, readOnly) {
     if(body.writeVisibility) properties.writeVisibility = body.properties.writeVisibility;
 
     let object = {
-      price:        body.price   || Date().getDate(),
-      date:         body.date   || Date().getDate() + 7,
+      price:        body.price   || 0,
+      date:         body.date   || Date.now(),
       meals:        body.meals || [],
       state:        body.state || [],
-      user:         body.user || "",
+      user:         user._id || "",
       properties:   properties
     };
 

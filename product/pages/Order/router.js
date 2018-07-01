@@ -17,14 +17,13 @@ const param = function(req,res,next){
 module.exports = function (app) {
     const routes = express.Router();
 
-
+    routes.get('/user/',  controller.getOrderOfUser);
+    
     routes.post('/create',  param,  query.create);
     routes.post('/edit',    param,  query.edit);
     routes.get('/:id',      param,  query.get);
     routes.get('/',         param,  query.list);
     routes.post('/remove',  param,  query.remove);
-
-    routes.post('/user/:userId',  controller.getOrderOfUser);
 
     app.use('/order', routes);
 }

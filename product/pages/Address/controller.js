@@ -6,7 +6,7 @@ const respondBadRequest = utility.respondBadRequest;
 
 exports.getAddressByUser = function (req, res, next) {
     var userId = req.user._id;
-    Address.find({user: userId}).then(function(err, data) {
+    Address.find({user: userId}).then(function(data, err) {
         respondQuery(res,err,data,"Address","Found")
     });
 };

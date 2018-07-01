@@ -29,15 +29,17 @@ exports.removeFromCart = function (req, res, next) {
 }
 
 exports.purchaseCart = function(req, res, next) {
-	let cartId = req.body.cartId;
-	Cart.findById(cartId).populate([{ path: 'meals', select: '' }]).then(function(data,err){
+	let userId = req.user._id
+	Cart.findOne({user: userId}).populate('meals').then(function(data,err){
 		let totalPrice = 0;
 		data.meals.forEach(function(meal){
 			totalPrice += meal.price;
 		});
-		let order = Order.parseJSON({ user: data.user, meals: data.meals, price: totalPrice });
+		let order = Order.parseJSON({ user: data.user, meals: data.meals, price: totalPrice }, req.user);
 		if (order != null){
 			order.save();
+			data.meals = [];
+			data.save();
 			return respondQuery(res,err,order,"Cart","Purchased");
 		}
 		else {

@@ -58,7 +58,7 @@ UserSchema.statics.parseJSON = function(body) {
       name:         body.name         || null,
       surname:      body.surname      || null,
       username:     body.username     || null,
-      picture:      body.picture      || null,
+      picture:      body.picture      || "https://fmcisite.files.wordpress.com/2016/02/blank-profile-picture-973460_6404.png",
       hash:         body.hash         || null,
       properties:   properties
     };
